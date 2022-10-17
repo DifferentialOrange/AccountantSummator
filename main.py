@@ -1,6 +1,6 @@
 import decimal
 
-from tkinter import Tk
+import tkinter
 from tkinter.filedialog import askopenfilename
 
 import xmltodict
@@ -48,10 +48,12 @@ def compute(filename):
         amount_str = el['ns2:assignmentInfo']['ns2:monetaryForm']['ns2:amount']
         result[category].add(amount_str)
 
-    return '\n'.join([str(item) for item in result.values()])
+    return '\n\n'.join([str(item) for item in result.values()])
 
 if __name__ == '__main__':
-    Tk().withdraw()
+    root = tkinter.Tk()
+
+    root.geometry("960x540")
 
     filetypes = (
         ('XML files', '*.xml'),
@@ -59,4 +61,9 @@ if __name__ == '__main__':
     )
 
     filename = askopenfilename(filetypes=filetypes)
-    print(compute(filename))
+
+    T = tkinter.Text(root, height = 540, width = 960)
+    T.pack()
+    T.insert(tkinter.INSERT, compute(filename))
+
+    root.mainloop()
