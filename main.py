@@ -1,11 +1,9 @@
 import decimal
 import xmltodict
 
+
 def to_eng_number(s):
     return s.replace(',', '.')
-
-def to_rus_number(s):
-    return s.replace('.', ',')
 
 class Result():
     def __init__(self, category):
