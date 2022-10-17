@@ -1,4 +1,8 @@
 import decimal
+
+from tkinter import Tk
+from tkinter.filedialog import askopenfilename
+
 import xmltodict
 
 
@@ -45,3 +49,14 @@ def compute(filename):
         result[category].add(amount_str)
 
     return '\n'.join([str(item) for item in result.values()])
+
+if __name__ == '__main__':
+    Tk().withdraw()
+
+    filetypes = (
+        ('XML files', '*.xml'),
+        ('All files', '*.*'),
+    )
+
+    filename = askopenfilename(filetypes=filetypes)
+    print(compute(filename))
